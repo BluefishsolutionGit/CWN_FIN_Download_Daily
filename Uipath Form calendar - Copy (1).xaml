@@ -1,0 +1,643 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Uipath_Form" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:ufa="clr-namespace:UiPath.Form.Activities;assembly=UiPath.Form.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="In_Config" Type="InOutArgument(scg:Dictionary(x:String, x:String))" />
+    <x:Property Name="Date_start" Type="OutArgument(s:DateTime)" />
+    <x:Property Name="Date_End" Type="OutArgument(s:DateTime)" />
+    <x:Property Name="UOB" Type="OutArgument(x:Boolean)" />
+    <x:Property Name="TISCO" Type="OutArgument(x:Boolean)" />
+    <x:Property Name="BAY" Type="OutArgument(x:Boolean)" />
+    <x:Property Name="SCB" Type="OutArgument(x:Boolean)" />
+    <x:Property Name="TTB" Type="OutArgument(x:Boolean)" />
+    <x:Property Name="KTB" Type="OutArgument(x:Boolean)" />
+    <x:Property Name="BBL" Type="OutArgument(x:Boolean)" />
+    <x:Property Name="KBANK" Type="OutArgument(x:Boolean)" />
+    <x:Property Name="StartDay" Type="OutArgument(x:String)" />
+    <x:Property Name="StartMonth" Type="OutArgument(x:String)" />
+    <x:Property Name="StartYear" Type="OutArgument(x:String)" />
+    <x:Property Name="EndDay" Type="OutArgument(x:String)" />
+    <x:Property Name="EndMonth" Type="OutArgument(x:String)" />
+    <x:Property Name="EndYear" Type="OutArgument(x:String)" />
+    <x:Property Name="date_bodymail" Type="OutArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1106.4,2094.4</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Uipath_Form_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="32">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>UiPath.Forms.Activities</x:String>
+      <x:String>UiPath.Forms.Activities.Base</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.Studio.Forms.Runtime</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>UiPath.Platform.GlobalVariables</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.Form.Activities</x:String>
+      <x:String>System.Globalization</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="39">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.Forms.Activities</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Forms.Runtime</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Form.Activities</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Uipath_Form" sap:VirtualizedContainerService.HintSize="639.2,2029.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="str_To_Date" />
+      <Variable x:TypeArguments="x:String" Name="data" />
+      <Variable x:TypeArguments="x:String" Name="str_From_date" />
+      <Variable x:TypeArguments="x:String" Name="Date_Input_Start" />
+      <Variable x:TypeArguments="x:String" Name="Date_Input_End" />
+      <Variable x:TypeArguments="x:String" Name="To_date" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ufa:FormActivity CreateFormActivityFileName="{x:Null}" CreateFormActivityFilePath="{x:Null}" Dismissed="{x:Null}" FormFieldsInputData="{x:Null}" FormTitle="{x:Null}" IconPath="{x:Null}" LocalCSSFilePath="{x:Null}" SelectedButton="{x:Null}" TimeoutInSeconds="{x:Null}" WindowPositionLeft="{x:Null}" WindowPositionTop="{x:Null}" CreateFormId="585298ab-8ecf-491c-ae42-3421b00fef50" DevTools="False" DisableMaximizeButton="False" DisableMinimizeButton="False" DisableSanitize="False" DisplayName="Create Form" EnableAccessibility="False" FormFieldsOutputData="[data]" FormHeight="395" FormSchema="%[{&quot;columns&quot;:[{&quot;components&quot;:[{&quot;label&quot;:&quot;From Date&quot;,&quot;labelPosition&quot;:&quot;left-left&quot;,&quot;format&quot;:&quot;dd/MM/yyyy&quot;,&quot;tableView&quot;:true,&quot;enableMinDateInput&quot;:true,&quot;datePicker&quot;:{&quot;maxDate&quot;:&quot;moment().subtract(0, 'days')&quot;,&quot;disableWeekends&quot;:false,&quot;disableWeekdays&quot;:false,&quot;minMode&quot;:&quot;year&quot;,&quot;maxMode&quot;:&quot;day&quot;},&quot;enableMaxDateInput&quot;:true,&quot;enableTime&quot;:false,&quot;timePicker&quot;:{&quot;showMeridian&quot;:false,&quot;hourStep&quot;:0,&quot;minuteStep&quot;:0},&quot;defaultDate&quot;:&quot;moment().subtract(1,'days')&quot;,&quot;customOptions&quot;:&quot;{}&quot;,&quot;key&quot;:&quot;FromDate&quot;,&quot;type&quot;:&quot;datetime&quot;,&quot;labelWidth&quot;:20,&quot;labelMargin&quot;:3,&quot;input&quot;:true,&quot;widget&quot;:{&quot;type&quot;:&quot;calendar&quot;,&quot;displayInTimezone&quot;:&quot;viewer&quot;,&quot;locale&quot;:&quot;en&quot;,&quot;useLocaleSettings&quot;:false,&quot;allowInput&quot;:true,&quot;mode&quot;:&quot;single&quot;,&quot;enableTime&quot;:false,&quot;noCalendar&quot;:false,&quot;format&quot;:&quot;dd/MM/yyyy&quot;,&quot;hourIncrement&quot;:0,&quot;minuteIncrement&quot;:0,&quot;time_24hr&quot;:true,&quot;disableWeekends&quot;:false,&quot;disableWeekdays&quot;:false,&quot;maxDate&quot;:&quot;moment().subtract(0, 'days')&quot;},&quot;hideOnChildrenHidden&quot;:false,&quot;keyModified&quot;:true}],&quot;offset&quot;:0,&quot;push&quot;:0,&quot;pull&quot;:0,&quot;size&quot;:&quot;xs&quot;,&quot;width&quot;:6},{&quot;components&quot;:[{&quot;label&quot;:&quot;To Date&quot;,&quot;labelPosition&quot;:&quot;left-left&quot;,&quot;format&quot;:&quot;dd/MM/yyyy&quot;,&quot;tableView&quot;:true,&quot;enableMinDateInput&quot;:true,&quot;datePicker&quot;:{&quot;maxDate&quot;:&quot;moment().subtract(0, 'days')&quot;,&quot;disableWeekends&quot;:false,&quot;disableWeekdays&quot;:false},&quot;enableMaxDateInput&quot;:true,&quot;enableTime&quot;:false,&quot;timePicker&quot;:{&quot;showMeridian&quot;:false},&quot;defaultDate&quot;:&quot;moment().subtract(1,'days')&quot;,&quot;customOptions&quot;:&quot;{Flatpickr}&quot;,&quot;key&quot;:&quot;ToDate&quot;,&quot;type&quot;:&quot;datetime&quot;,&quot;labelWidth&quot;:20,&quot;input&quot;:true,&quot;widget&quot;:{&quot;type&quot;:&quot;calendar&quot;,&quot;displayInTimezone&quot;:&quot;viewer&quot;,&quot;locale&quot;:&quot;en&quot;,&quot;useLocaleSettings&quot;:false,&quot;allowInput&quot;:true,&quot;mode&quot;:&quot;single&quot;,&quot;enableTime&quot;:false,&quot;noCalendar&quot;:false,&quot;format&quot;:&quot;dd/MM/yyyy&quot;,&quot;hourIncrement&quot;:1,&quot;minuteIncrement&quot;:1,&quot;time_24hr&quot;:true,&quot;disableWeekends&quot;:false,&quot;disableWeekdays&quot;:false,&quot;maxDate&quot;:&quot;moment().subtract(0, 'days')&quot;},&quot;hideOnChildrenHidden&quot;:false}],&quot;offset&quot;:0,&quot;push&quot;:0,&quot;pull&quot;:0,&quot;size&quot;:&quot;xs&quot;,&quot;width&quot;:6}],&quot;autoAdjust&quot;:true,&quot;key&quot;:&quot;columns&quot;,&quot;type&quot;:&quot;columns&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;label&quot;:&quot;Columns&quot;},{&quot;label&quot;:&quot;Table&quot;,&quot;cellAlignment&quot;:&quot;left&quot;,&quot;key&quot;:&quot;table&quot;,&quot;type&quot;:&quot;table&quot;,&quot;numRows&quot;:1,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;rows&quot;:[[{&quot;components&quot;:[{&quot;label&quot;:&quot;UOB&quot;,&quot;tableView&quot;:false,&quot;defaultValue&quot;:true,&quot;key&quot;:&quot;UOB&quot;,&quot;type&quot;:&quot;checkbox&quot;,&quot;input&quot;:true,&quot;labelWidth&quot;:20},{&quot;label&quot;:&quot;BAY&quot;,&quot;tableView&quot;:false,&quot;defaultValue&quot;:true,&quot;key&quot;:&quot;BAY&quot;,&quot;type&quot;:&quot;checkbox&quot;,&quot;input&quot;:true,&quot;labelWidth&quot;:20},{&quot;label&quot;:&quot;TISCO&quot;,&quot;tableView&quot;:false,&quot;defaultValue&quot;:true,&quot;key&quot;:&quot;TISCO&quot;,&quot;type&quot;:&quot;checkbox&quot;,&quot;labelWidth&quot;:20,&quot;input&quot;:true},{&quot;label&quot;:&quot;SCB&quot;,&quot;tableView&quot;:false,&quot;defaultValue&quot;:true,&quot;key&quot;:&quot;SCB&quot;,&quot;type&quot;:&quot;checkbox&quot;,&quot;input&quot;:true,&quot;labelWidth&quot;:20}]},{&quot;components&quot;:[{&quot;label&quot;:&quot;BBL&quot;,&quot;tableView&quot;:false,&quot;defaultValue&quot;:true,&quot;key&quot;:&quot;BBL&quot;,&quot;type&quot;:&quot;checkbox&quot;,&quot;input&quot;:true,&quot;hideOnChildrenHidden&quot;:false,&quot;labelWidth&quot;:20},{&quot;label&quot;:&quot;TTB&quot;,&quot;tableView&quot;:false,&quot;defaultValue&quot;:true,&quot;key&quot;:&quot;TTB&quot;,&quot;type&quot;:&quot;checkbox&quot;,&quot;input&quot;:true,&quot;labelWidth&quot;:20},{&quot;label&quot;:&quot;KBANK&quot;,&quot;tableView&quot;:false,&quot;defaultValue&quot;:true,&quot;key&quot;:&quot;KBANK&quot;,&quot;type&quot;:&quot;checkbox&quot;,&quot;input&quot;:true,&quot;labelWidth&quot;:20},{&quot;label&quot;:&quot;KTB&quot;,&quot;tableView&quot;:false,&quot;defaultValue&quot;:true,&quot;key&quot;:&quot;KTB&quot;,&quot;type&quot;:&quot;checkbox&quot;,&quot;input&quot;:true,&quot;labelWidth&quot;:20}]},{&quot;components&quot;:[]},{&quot;components&quot;:[]},{&quot;components&quot;:[]},{&quot;components&quot;:[]},{&quot;components&quot;:[]},{&quot;components&quot;:[]}]],&quot;numCols&quot;:8},{&quot;label&quot;:&quot;Submit&quot;,&quot;size&quot;:&quot;sm&quot;,&quot;disableOnInvalid&quot;:true,&quot;tableView&quot;:false,&quot;key&quot;:&quot;submit&quot;,&quot;custom&quot;:&quot;instance.emit('executeDoBlock', instance.component);&quot;,&quot;type&quot;:&quot;button&quot;,&quot;input&quot;:true,&quot;isResetData&quot;:false}]" FormTheme="{}{&quot;Activities&quot;:[&quot;FORMS&quot;],&quot;Id&quot;:&quot;100220&quot;,&quot;Name&quot;:&quot;Sandstone&quot;,&quot;BaseCss&quot;:&quot;./assets/css/themes/sandstone.bootstrap.min.css&quot;,&quot;ImageSrc&quot;:&quot;./assets/themeicons/sandstone.png&quot;,&quot;OverrideCssUrl&quot;:&quot;&quot;,&quot;UserStyleOverrides&quot;:&quot;&quot;,&quot;Properties&quot;:&quot;&quot;,&quot;IsCustomTheme&quot;:false,&quot;Version&quot;:1,&quot;ThemeVersion&quot;:1}" FormWidth="623" GenerateInputFields="False" sap:VirtualizedContainerService.HintSize="576.8,1428" sap2010:WorkflowViewState.IdRef="FormActivity_3" IsReadOnly="False" MaxColumnsForSchemaGeneration="10" RunDoBlockFirst="False" RunInIsolatedMode="True" StartAsMinimized="False">
+      <ufa:FormActivity.Body>
+        <ActivityAction x:TypeArguments="scg:Dictionary(x:String, x:Object)">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="540,1301.6" sap2010:WorkflowViewState.IdRef="Sequence_15">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:String" Name="Get_DateFrom" />
+              <Variable x:TypeArguments="x:String" Name="Start_date" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If Condition="[Date_start &gt; Date_End]" sap:VirtualizedContainerService.HintSize="477.6,673.6" sap2010:WorkflowViewState.IdRef="If_1">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="400,390.4" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="x:String" Name="Reason" />
+                  </Sequence.Variables>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:05" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="337.6,85.6" sap2010:WorkflowViewState.IdRef="MessageBox_2" Text="[&quot;Warning! You need to set Fromdate less than or equal Todate&quot; +vbCrLf+ &quot;Please Input date again&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:MessageBox>
+                  <Assign sap:VirtualizedContainerService.HintSize="337.6,60" sap2010:WorkflowViewState.IdRef="Assign_28">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[Reason]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">Wrong date input</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <TerminateWorkflow DisplayName="Terminate Workflow" sap:VirtualizedContainerService.HintSize="337.6,52.8" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_1" Reason="[Reason]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </TerminateWorkflow>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="400,104.8" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </If.Else>
+            </If>
+            <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="477.6,90.4" sap2010:WorkflowViewState.IdRef="WriteLine_4" Text="[data]" />
+            <Assign sap:VirtualizedContainerService.HintSize="477.6,60" sap2010:WorkflowViewState.IdRef="Assign_7">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[Start_date]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[data.Split(":"c)(1).ToString]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <If Condition="[Start_date.Contains(&quot;null&quot;)]" sap:VirtualizedContainerService.HintSize="477.6,52.8" sap2010:WorkflowViewState.IdRef="If_2">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="400,172" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="x:String" Name="str_From_date" />
+                  </Sequence.Variables>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Assign sap:VirtualizedContainerService.HintSize="337.6,60" sap2010:WorkflowViewState.IdRef="Assign_8">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[Date_Input_Start]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd")]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="400,272" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Assign sap:VirtualizedContainerService.HintSize="337.6,60" sap2010:WorkflowViewState.IdRef="Assign_9">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[Start_date]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[Start_date.Substring(2,10)]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign sap:VirtualizedContainerService.HintSize="337.6,60" sap2010:WorkflowViewState.IdRef="Assign_10">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[Date_Input_Start]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[Start_date]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+              </If.Else>
+            </If>
+            <Assign sap:VirtualizedContainerService.HintSize="477.6,60" sap2010:WorkflowViewState.IdRef="Assign_12">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[To_date]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[data.Split(":"c)(7).ToString]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <If Condition="[data.Contains(&quot;+07:00&quot;) = true]" sap:VirtualizedContainerService.HintSize="477.6,52.8" sap2010:WorkflowViewState.IdRef="If_3">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="684,1864" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If Condition="[To_date.Contains(&quot;00+07&quot;)]" sap:VirtualizedContainerService.HintSize="621.6,1752" sap2010:WorkflowViewState.IdRef="If_5">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If.Then>
+                      <Sequence sap:VirtualizedContainerService.HintSize="400,372" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Assign sap:VirtualizedContainerService.HintSize="337.6,60" sap2010:WorkflowViewState.IdRef="Assign_13">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[To_date]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">[data.Split(":"c)(5).ToString]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap:VirtualizedContainerService.HintSize="337.6,60" sap2010:WorkflowViewState.IdRef="Assign_14">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[To_date]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">[To_date.tostring.Substring(2,10)]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap:VirtualizedContainerService.HintSize="337.6,60" sap2010:WorkflowViewState.IdRef="Assign_15">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[Date_Input_End]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">[To_date]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence sap:VirtualizedContainerService.HintSize="544,1201.6" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Assign sap:VirtualizedContainerService.HintSize="481.6,60" sap2010:WorkflowViewState.IdRef="Assign_17">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[To_date]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">[data.Split(":"c)(3).ToString]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <If Condition="[To_date.Contains(&quot;00+07&quot;)]" sap:VirtualizedContainerService.HintSize="481.6,989.6" sap2010:WorkflowViewState.IdRef="If_4">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <If.Then>
+                            <Sequence sap:VirtualizedContainerService.HintSize="400,412" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <Assign sap:VirtualizedContainerService.HintSize="337.6,69.6" sap2010:WorkflowViewState.IdRef="Assign_18">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[To_date]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">[data.Split(":"c)(5).ToString]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Assign sap:VirtualizedContainerService.HintSize="337.6,69.6" sap2010:WorkflowViewState.IdRef="Assign_19">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[To_date]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">[To_date.tostring.Substring(2,10)]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Assign sap:VirtualizedContainerService.HintSize="337.6,69.6" sap2010:WorkflowViewState.IdRef="Assign_20">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[Date_Input_End]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">[To_date]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </Sequence>
+                          </If.Then>
+                          <If.Else>
+                            <Sequence sap:VirtualizedContainerService.HintSize="400,412" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <Assign sap:VirtualizedContainerService.HintSize="337.6,69.6" sap2010:WorkflowViewState.IdRef="Assign_22">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[To_date]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">[data.Split(":"c)(4).ToString]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Assign sap:VirtualizedContainerService.HintSize="337.6,69.6" sap2010:WorkflowViewState.IdRef="Assign_23">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[To_date]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">[To_date.tostring.Substring(2,10)]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Assign sap:VirtualizedContainerService.HintSize="337.6,69.6" sap2010:WorkflowViewState.IdRef="Assign_24">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[Date_Input_End]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">[To_date]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </Sequence>
+                          </If.Else>
+                        </If>
+                      </Sequence>
+                    </If.Else>
+                  </If>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="400,295.2" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Assign sap:VirtualizedContainerService.HintSize="337.6,69.6" sap2010:WorkflowViewState.IdRef="Assign_26">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[Date_Input_End]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd")]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="337.6,62.4" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                    <ui:CommentOut.Body>
+                      <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="400,192.8" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Assign sap:VirtualizedContainerService.HintSize="337.6,69.6" sap2010:WorkflowViewState.IdRef="Assign_27">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[To_date]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">[DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd")]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </ui:CommentOut.Body>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:CommentOut>
+                </Sequence>
+              </If.Else>
+            </If>
+          </Sequence>
+        </ActivityAction>
+      </ufa:FormActivity.Body>
+      <ufa:FormActivity.DelayBody>
+        <ActivityAction x:TypeArguments="scg:Dictionary(x:String, x:Object)">
+          <Delay Duration="00:00:00.2500000" sap2010:WorkflowViewState.IdRef="Delay_3" />
+        </ActivityAction>
+      </ufa:FormActivity.DelayBody>
+      <ufa:FormActivity.FormFieldsCollection>
+        <OutArgument x:TypeArguments="s:DateTime" x:Key="FromDate">[Date_start]</OutArgument>
+        <OutArgument x:TypeArguments="s:DateTime" x:Key="ToDate">[Date_End]</OutArgument>
+        <OutArgument x:TypeArguments="x:Boolean" x:Key="UOB">[UOB]</OutArgument>
+        <OutArgument x:TypeArguments="x:Boolean" x:Key="BBL">[BBL]</OutArgument>
+        <OutArgument x:TypeArguments="x:Boolean" x:Key="BAY">[BAY]</OutArgument>
+        <OutArgument x:TypeArguments="x:Boolean" x:Key="TISCO">[TISCO]</OutArgument>
+        <OutArgument x:TypeArguments="x:Boolean" x:Key="SCB">[SCB]</OutArgument>
+        <OutArgument x:TypeArguments="x:Boolean" x:Key="TTB">[TTB]</OutArgument>
+        <OutArgument x:TypeArguments="x:Boolean" x:Key="KBANK">[KBANK]</OutArgument>
+        <OutArgument x:TypeArguments="x:Boolean" x:Key="KTB">[KTB]</OutArgument>
+      </ufa:FormActivity.FormFieldsCollection>
+    </ufa:FormActivity>
+    <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="576.8,256.8" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+      <ui:MultipleAssign.AssignOperations>
+        <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[StartDay]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[Date_Input_Start.Split("-")(2)]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[StartMonth]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[Date_Input_Start.Split("-")(1)]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[StartYear]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[Date_Input_Start.Split("-")(0)]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[EndDay]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[Date_Input_End.Split("-")(2)]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[EndMonth]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[Date_Input_End.Split("-")(1)]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[EndYear]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[Date_Input_End.Split("-")(0)]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+        </scg:List>
+      </ui:MultipleAssign.AssignOperations>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:MultipleAssign>
+    <Assign sap:VirtualizedContainerService.HintSize="576.8,60" sap2010:WorkflowViewState.IdRef="Assign_29">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[date_bodymail]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[StartDay+"/"+StartMonth+"/"+StartYear+" - "+EndDay+"/"+EndMonth+"/"+EndYear]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="576.8,52.8" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="499.2,331.2" sap2010:WorkflowViewState.IdRef="Sequence_16">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ufa:FormActivity CreateFormActivityFileName="{x:Null}" CreateFormActivityFilePath="{x:Null}" Dismissed="{x:Null}" FormFieldsInputData="{x:Null}" FormTitle="{x:Null}" IconPath="{x:Null}" LocalCSSFilePath="{x:Null}" SelectedButton="{x:Null}" TimeoutInSeconds="{x:Null}" WindowPositionLeft="{x:Null}" WindowPositionTop="{x:Null}" CreateFormId="585298ab-8ecf-491c-ae42-3421b00fef50" DevTools="False" DisableMaximizeButton="False" DisableMinimizeButton="False" DisableSanitize="False" DisplayName="Create Form" EnableAccessibility="False" FormFieldsOutputData="[data]" FormHeight="400" FormSchema="%[{&quot;columns&quot;:[{&quot;components&quot;:[{&quot;label&quot;:&quot;From Date&quot;,&quot;labelPosition&quot;:&quot;left-left&quot;,&quot;format&quot;:&quot;dd/MM/yyyy&quot;,&quot;tableView&quot;:true,&quot;enableMinDateInput&quot;:true,&quot;datePicker&quot;:{&quot;minDate&quot;:&quot;moment().subtract(100, 'days')&quot;,&quot;maxDate&quot;:&quot;moment().subtract(0, 'days')&quot;,&quot;disableWeekends&quot;:false,&quot;disableWeekdays&quot;:false,&quot;minMode&quot;:&quot;year&quot;,&quot;maxMode&quot;:&quot;day&quot;},&quot;enableMaxDateInput&quot;:true,&quot;enableTime&quot;:false,&quot;timePicker&quot;:{&quot;showMeridian&quot;:false,&quot;hourStep&quot;:0,&quot;minuteStep&quot;:0},&quot;customOptions&quot;:&quot;{}&quot;,&quot;key&quot;:&quot;FromDate&quot;,&quot;type&quot;:&quot;datetime&quot;,&quot;labelWidth&quot;:20,&quot;labelMargin&quot;:3,&quot;input&quot;:true,&quot;widget&quot;:{&quot;type&quot;:&quot;calendar&quot;,&quot;displayInTimezone&quot;:&quot;viewer&quot;,&quot;locale&quot;:&quot;en&quot;,&quot;useLocaleSettings&quot;:false,&quot;allowInput&quot;:true,&quot;mode&quot;:&quot;single&quot;,&quot;enableTime&quot;:false,&quot;noCalendar&quot;:false,&quot;format&quot;:&quot;dd/MM/yyyy&quot;,&quot;hourIncrement&quot;:0,&quot;minuteIncrement&quot;:0,&quot;time_24hr&quot;:true,&quot;minDate&quot;:&quot;moment().subtract(100, 'days')&quot;,&quot;disableWeekends&quot;:false,&quot;disableWeekdays&quot;:false,&quot;maxDate&quot;:&quot;moment().subtract(0, 'days')&quot;},&quot;hideOnChildrenHidden&quot;:false,&quot;keyModified&quot;:true}],&quot;offset&quot;:0,&quot;push&quot;:0,&quot;pull&quot;:0,&quot;size&quot;:&quot;xs&quot;,&quot;width&quot;:6},{&quot;components&quot;:[{&quot;label&quot;:&quot;To Date&quot;,&quot;labelPosition&quot;:&quot;left-left&quot;,&quot;format&quot;:&quot;dd/MM/yyyy&quot;,&quot;tableView&quot;:true,&quot;enableMinDateInput&quot;:true,&quot;datePicker&quot;:{&quot;minDate&quot;:&quot;moment().subtract(100, 'days')&quot;,&quot;maxDate&quot;:&quot;moment().subtract(0, 'days')&quot;,&quot;disableWeekends&quot;:false,&quot;disableWeekdays&quot;:false},&quot;enableMaxDateInput&quot;:true,&quot;enableTime&quot;:false,&quot;timePicker&quot;:{&quot;showMeridian&quot;:false},&quot;customOptions&quot;:&quot;{Flatpickr}&quot;,&quot;key&quot;:&quot;ToDate&quot;,&quot;type&quot;:&quot;datetime&quot;,&quot;labelWidth&quot;:20,&quot;input&quot;:true,&quot;widget&quot;:{&quot;type&quot;:&quot;calendar&quot;,&quot;displayInTimezone&quot;:&quot;viewer&quot;,&quot;locale&quot;:&quot;en&quot;,&quot;useLocaleSettings&quot;:false,&quot;allowInput&quot;:true,&quot;mode&quot;:&quot;single&quot;,&quot;enableTime&quot;:false,&quot;noCalendar&quot;:false,&quot;format&quot;:&quot;dd/MM/yyyy&quot;,&quot;hourIncrement&quot;:1,&quot;minuteIncrement&quot;:1,&quot;time_24hr&quot;:true,&quot;minDate&quot;:&quot;moment().subtract(100, 'days')&quot;,&quot;disableWeekends&quot;:false,&quot;disableWeekdays&quot;:false,&quot;maxDate&quot;:&quot;moment().subtract(0, 'days')&quot;},&quot;hideOnChildrenHidden&quot;:false}],&quot;offset&quot;:0,&quot;push&quot;:0,&quot;pull&quot;:0,&quot;size&quot;:&quot;xs&quot;,&quot;width&quot;:6}],&quot;autoAdjust&quot;:true,&quot;key&quot;:&quot;columns&quot;,&quot;type&quot;:&quot;columns&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;label&quot;:&quot;Columns&quot;},{&quot;tag&quot;:&quot;h3&quot;,&quot;refreshOnChange&quot;:true,&quot;content&quot;:&quot;UOB bank account : 601-3003928&quot;,&quot;key&quot;:&quot;label&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;label&quot;:&quot;Label&quot;,&quot;type&quot;:&quot;label&quot;},{&quot;label&quot;:&quot;Token&quot;,&quot;labelPosition&quot;:&quot;left-left&quot;,&quot;showWordCount&quot;:true,&quot;tableView&quot;:true,&quot;key&quot;:&quot;textArea&quot;,&quot;type&quot;:&quot;textarea&quot;,&quot;labelWidth&quot;:20,&quot;input&quot;:true},{&quot;label&quot;:&quot;Submit&quot;,&quot;size&quot;:&quot;sm&quot;,&quot;disableOnInvalid&quot;:true,&quot;tableView&quot;:false,&quot;key&quot;:&quot;submit&quot;,&quot;type&quot;:&quot;button&quot;,&quot;input&quot;:true,&quot;isResetData&quot;:false}]" FormTheme="{}{&quot;Activities&quot;:[&quot;FORMS&quot;],&quot;Id&quot;:&quot;1707379083708&quot;,&quot;Name&quot;:&quot;CWN1&quot;,&quot;BaseCss&quot;:&quot;./assets/css/themes/sandstone.bootstrap.min.css&quot;,&quot;ImageSrc&quot;:&quot;./assets/themeicons/sandstone.png&quot;,&quot;OverrideCssUrl&quot;:&quot;&quot;,&quot;UserStyleOverrides&quot;:&quot;body , h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {\n                      font-family : Roboto !important;\n                    }table, .btn, .form-control {\n                      font-size : 20px !important;\n                     }h1 {\n                      font-size : 42px !important;\n                    }h2 {\n                      font-size : 36px !important;\n                    }h3 {\n                      font-size : 30px !important;\n                    }h4 {\n                      font-size : 24px !important;\n                    }h5 {\n                      font-size : 20px !important;\n                    }h6 {\n                      font-size : 18px !important;\n                    }body {\n      background:  #ffffff !important;\n      font-size : 20px !important;\n      font-family : Roboto !important;\n      color : #3e3f3a !important\n    } .panel-default {\n                        background:   !important;\n                        border-color :   !important;\n                      }\n                 .panel-default &gt; .panel-heading {\n                        background-color:  !important;\n                        color : #3e3f3a !important\n                      }.btn-primary {\n                          background:  #325d88 !important;\n                          border-color:  #ffffff !important;\n                          color:  #ffffff !important;\n                      } .btn-primary:hover {\n                          background:  #325d88 !important;\n                          color:  #ffffff !important;\n                      } .btn-default {\n                        background:   !important;\n                        border-color:   !important;\n                        color:   !important;\n                      } .btn-default:hover {\n                        background:   !important;\n                        color:   !important;\n                      } &quot;,&quot;Properties&quot;:&quot;&quot;,&quot;IsCustomTheme&quot;:true,&quot;Version&quot;:1,&quot;ThemeVersion&quot;:1}" FormWidth="600" GenerateInputFields="True" sap:VirtualizedContainerService.HintSize="436.8,219.2" sap2010:WorkflowViewState.IdRef="FormActivity_2" IsReadOnly="False" MaxColumnsForSchemaGeneration="6" RunDoBlockFirst="False" RunInIsolatedMode="True" StartAsMinimized="False">
+            <ufa:FormActivity.Body>
+              <ActivityAction x:TypeArguments="scg:Dictionary(x:String, x:Object)">
+                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="400,92.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="x:String" Name="Start_date" />
+                    <Variable x:TypeArguments="x:String" Name="To_date" />
+                    <Variable x:TypeArguments="s:DateTime" Name="Date_Input_Start" />
+                    <Variable x:TypeArguments="s:DateTime" Name="Date_Input_End" />
+                  </Sequence.Variables>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="337.6,98.4" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[data]" />
+                  <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="337.6,95.2" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;Success&quot; + data]" />
+                  <Assign sap:VirtualizedContainerService.HintSize="337.6,69.6" sap2010:WorkflowViewState.IdRef="Assign_1">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[Start_date]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[data.Split(":"c)(1).ToString]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign sap:VirtualizedContainerService.HintSize="337.6,69.6" sap2010:WorkflowViewState.IdRef="Assign_2">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[Start_date]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[Start_date.Substring(2,10)]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign sap:VirtualizedContainerService.HintSize="337.6,69.6" sap2010:WorkflowViewState.IdRef="Assign_3">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[Date_Input_Start]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="s:DateTime">[DateTime.ParseExact(Start_date,"yyyy-MM-dd",System.Globalization.CultureInfo.InvariantCulture)]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign sap:VirtualizedContainerService.HintSize="337.6,69.6" sap2010:WorkflowViewState.IdRef="Assign_4">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[To_date]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[data.Split(":"c)(5).ToString]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign sap:VirtualizedContainerService.HintSize="337.6,69.6" sap2010:WorkflowViewState.IdRef="Assign_5">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[To_date]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[To_date.Substring(2,10)]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign sap:VirtualizedContainerService.HintSize="337.6,69.6" sap2010:WorkflowViewState.IdRef="Assign_6">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[Date_Input_End]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="s:DateTime">[DateTime.ParseExact(To_date,"yyyy-MM-dd",System.Globalization.CultureInfo.InvariantCulture)]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="337.6,98.4" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[&quot;Start date  &quot; +Date_Input_Start.ToString(&quot;ddMMyyyy&quot;)]" />
+                  <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="337.6,98.4" sap2010:WorkflowViewState.IdRef="WriteLine_3" Text="[&quot;End date  &quot; + Date_Input_End.ToString(&quot;ddMMyyyy&quot;)]" />
+                </Sequence>
+              </ActivityAction>
+            </ufa:FormActivity.Body>
+            <ufa:FormActivity.DelayBody>
+              <ActivityAction x:TypeArguments="scg:Dictionary(x:String, x:Object)">
+                <Delay Duration="00:00:00.2500000" sap2010:WorkflowViewState.IdRef="Delay_2" />
+              </ActivityAction>
+            </ufa:FormActivity.DelayBody>
+            <ufa:FormActivity.FormFieldsCollection>
+              <InOutArgument x:TypeArguments="x:String" x:Key="FromDate">[str_From_date]</InOutArgument>
+              <InOutArgument x:TypeArguments="x:String" x:Key="ToDate">[str_To_Date]</InOutArgument>
+            </ufa:FormActivity.FormFieldsCollection>
+          </ufa:FormActivity>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+  </Sequence>
+</Activity>

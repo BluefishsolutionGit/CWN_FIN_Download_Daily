@@ -1,0 +1,96 @@
+{
+  "name": "Download daily statement",
+  "description": "Blank Process",
+  "main": "Flowchart.xaml",
+  "dependencies": {
+    "UiPath.Database.Activities": "[1.7.1]",
+    "UiPath.Excel.Activities": "[2.16.2]",
+    "UiPath.Form.Activities": "[2.0.7]",
+    "UiPath.Mail.Activities": "[1.18.2]",
+    "UiPath.System.Activities": "[22.10.3]",
+    "UiPath.Testing.Activities": "[22.10.3]",
+    "UiPath.UIAutomation.Activities": "[22.10.5]"
+  },
+  "webServices": [],
+  "entitiesStores": [],
+  "schemaVersion": "4.0",
+  "studioVersion": "22.10.5.0",
+  "projectVersion": "1.1.15",
+  "runtimeOptions": {
+    "autoDispose": false,
+    "netFrameworkLazyLoading": false,
+    "isPausable": true,
+    "isAttended": false,
+    "requiresUserInteraction": true,
+    "supportsPersistence": false,
+    "excludedLoggedData": [
+      "Private:*",
+      "*password*"
+    ],
+    "executionType": "Workflow",
+    "readyForPiP": false,
+    "startsInPiP": false,
+    "mustRestoreAllDependencies": true,
+    "pipType": "ChildSession"
+  },
+  "designOptions": {
+    "projectProfile": "Developement",
+    "outputType": "Process",
+    "libraryOptions": {
+      "includeOriginalXaml": false,
+      "privateWorkflows": []
+    },
+    "processOptions": {
+      "ignoredFiles": [
+        "Main.xaml",
+        "issue rv rb.xaml",
+        "issue rv rb (Table).xaml",
+        "Issue RV non.xaml",
+        "Uipath Form calendar.xaml",
+        "BBL find Customer.xaml",
+        "Issue BBL RB Group.xaml",
+        "Issue BBL RV Group.xaml",
+        "Issue BBL RV Normal.xaml"
+      ]
+    },
+    "fileInfoCollection": [],
+    "modernBehavior": false
+  },
+  "expressionLanguage": "VisualBasic",
+  "entryPoints": [
+    {
+      "filePath": "Test.xaml",
+      "uniqueId": "8edb5885-2c4c-4369-86bd-9b2f5d5e4959",
+      "input": [],
+      "output": []
+    },
+    {
+      "filePath": "Download Tisco.xaml",
+      "uniqueId": "93dc4ed2-ba72-4130-a5a6-5b2a2936c2d6",
+      "input": [],
+      "output": []
+    },
+    {
+      "filePath": "Upload BBL.xaml",
+      "uniqueId": "cbac47ef-2675-4fc9-a905-9164866f99b7",
+      "input": [],
+      "output": []
+    },
+    {
+      "filePath": "Download BBL.xaml",
+      "uniqueId": "3d92f6ea-e9b9-4a5f-8e2b-e7c7dbf9f8a0",
+      "input": [],
+      "output": []
+    },
+    {
+      "filePath": "Flowchart.xaml",
+      "uniqueId": "9a0f48c1-bff4-4e8f-9e36-668880366d6d",
+      "input": [],
+      "output": []
+    }
+  ],
+  "isTemplate": false,
+  "templateProjectData": {},
+  "publishData": {},
+  "targetFramework": "Windows"
+}
