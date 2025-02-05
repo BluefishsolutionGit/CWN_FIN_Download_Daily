@@ -1,5 +1,6 @@
 {
   "name": "Download daily statement",
+  "projectId": "040d1356-e10d-4a1f-9de4-7c7f5e9b3cad",
   "description": "Blank Process",
   "main": "Flowchart.xaml",
   "dependencies": {
@@ -23,6 +24,7 @@
     "isAttended": false,
     "requiresUserInteraction": true,
     "supportsPersistence": false,
+    "workflowSerialization": "DataContract",
     "excludedLoggedData": [
       "Private:*",
       "*password*"
@@ -54,7 +56,8 @@
       ]
     },
     "fileInfoCollection": [],
-    "modernBehavior": false
+    "modernBehavior": false,
+    "saveToCloud": false
   },
   "expressionLanguage": "VisualBasic",
   "entryPoints": [
